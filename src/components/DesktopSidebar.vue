@@ -1,30 +1,8 @@
 <script setup lang="ts">
+import { routes } from "@/lib/routeConstants";
 import { Icon } from "@iconify/vue";
 import Logo from "./Logo.vue";
 import { buttonVariants } from "./ui/button";
-
-const routes = [
-  {
-    href: "",
-    label: "Home",
-    icon: "lucide:home",
-  },
-  {
-    href: "workflows",
-    label: "Workflows",
-    icon: "lucide:layers-2",
-  },
-  {
-    href: "credentials",
-    label: "Credentials",
-    icon: "lucide:shield-check",
-  },
-  {
-    href: "billing",
-    label: "Billing",
-    icon: "lucide:coins",
-  },
-];
 </script>
 <template>
   <aside

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BreadcrumbHeader from "./components/BreadcrumbHeader.vue";
 import DesktopSidebar from "./components/DesktopSidebar.vue";
+import MobileSidebar from "./components/MobileSidebar.vue";
 import ThemeToggle from "./components/ThemeToggle.vue";
 import Separator from "./components/ui/separator/Separator.vue";
 </script>
@@ -12,6 +13,7 @@ import Separator from "./components/ui/separator/Separator.vue";
       <header
         class="flex items-center justify-between px-6 py-4 h-[50px] container"
       >
+        <MobileSidebar />
         <BreadcrumbHeader />
         <ThemeToggle />
       </header>
