@@ -1,15 +1,36 @@
 <script setup lang="ts">
+import {
+  BreadcrumbHeader,
+  DesktopSidebar,
+  MobileSidebar,
+  ThemeToggle,
+  UserButton,
+} from "@/components";
+import Separator from "@/components/ui/separator/Separator.vue";
+import Toaster from "@/components/ui/toast/Toaster.vue";
+import { supabase } from "@/lib/supabaseClient";
 import { computed } from "vue";
-import { useRoute } from "vue-router";
-import BreadcrumbHeader from "./components/BreadcrumbHeader.vue";
-import DesktopSidebar from "./components/DesktopSidebar.vue";
-import MobileSidebar from "./components/MobileSidebar.vue";
-import ThemeToggle from "./components/ThemeToggle.vue";
-import Separator from "./components/ui/separator/Separator.vue";
-import Toaster from "./components/ui/toast/Toaster.vue";
+import { useRoute, useRouter } from "vue-router";
+import { useUserStore } from "./stores/userStore";
 
+const userStore = useUserStore();
+
+const router = useRouter();
 const route = useRoute();
 const isLoginPage = computed(() => route.path === "/login");
+
+supabase.auth.onAuthStateChange((event, session) => {
+  if (event === "SIGNED_IN") {
+    userStore.user = session?.user;
+  } else if (event === "SIGNED_OUT") {
+    userStore.user = null;
+    router.replace("/login");
+  }
+});
+
+function onLogout() {
+  supabase.auth.signOut();
+}
 </script>
 
 <template>
@@ -24,7 +45,10 @@ const isLoginPage = computed(() => route.path === "/login");
       >
         <MobileSidebar />
         <BreadcrumbHeader />
-        <ThemeToggle />
+        <div class="flex items-center gap-1">
+          <ThemeToggle />
+          <UserButton @logout="onLogout" />
+        </div>
       </header>
       <Separator />
       <div class="overflow-auto">
