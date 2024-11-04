@@ -20,6 +20,7 @@ function toggleOpen() {
           <Button variant="icon">
             <Icon icon="lucide:menu" />
           </Button>
+          
         </SheetTrigger>
         <SheetContent side="left" class="w-[400px] sm:w-[540px] space-y-4">
           <Logo />
