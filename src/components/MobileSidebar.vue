@@ -4,7 +4,7 @@ import { routes } from "@/lib/routeConstants";
 import { Icon } from "@iconify/vue";
 import { ref } from "vue";
 import Logo from "./Logo.vue";
-import { buttonVariants } from "./ui/button";
+import { Button, buttonVariants } from "./ui/button";
 
 const isOpen = ref(false);
 
@@ -17,10 +17,9 @@ function toggleOpen() {
     <div class="container flex items-center justify-between px-8">
       <Sheet :open="isOpen" @update:open="toggleOpen">
         <SheetTrigger as-child>
-          <Button variant="icon">
+          <Button variant="ghost">
             <Icon icon="lucide:menu" />
           </Button>
-          
         </SheetTrigger>
         <SheetContent side="left" class="w-[400px] sm:w-[540px] space-y-4">
           <Logo />
