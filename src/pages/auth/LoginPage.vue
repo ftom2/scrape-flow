@@ -1,15 +1,9 @@
 <script setup lang="ts">
+import InputField from "@/components/InputField.vue";
 import Logo from "@/components/Logo.vue";
 import Button from "@/components/ui/button/Button.vue";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { FormField } from "@/components/ui/form";
 import { supabase } from "@/lib/supabaseClient";
 import { toTypedSchema } from "@vee-validate/zod";
 import { Loader2 } from "lucide-vue-next";
@@ -77,31 +71,22 @@ const onSignIn = form.handleSubmit(async (values) => {
             class="flex flex-col gap-3"
           >
             <FormField v-slot="{ componentField }" name="email">
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    type="text"
-                    placeholder="example@gmail.com"
-                    v-bind="componentField"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <InputField
+                label="Email"
+                type="email"
+                placeholder="example@gmail.com"
+                :field-props="componentField"
+              />
             </FormField>
             <FormField v-slot="{ componentField }" name="password">
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input
-                    type="password"
-                    placeholder="enter password"
-                    v-bind="componentField"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              <InputField
+                label="Password"
+                type="password"
+                placeholder="enter a strong password"
+                :field-props="componentField"
+              />
             </FormField>
+
             <Button :disabled="isLoading" class="mt-4">
               <Loader2 v-if="isLoading" class="w-4 h-4 mr-2 animate-spin" />
               Sign in
