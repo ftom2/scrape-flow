@@ -10,12 +10,11 @@ import Separator from "@/components/ui/separator/Separator.vue";
 import Toaster from "@/components/ui/toast/Toaster.vue";
 import { supabase } from "@/lib/supabaseClient";
 import { computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { useUserStore } from "./stores/userStore";
 
 const userStore = useUserStore();
 
-const router = useRouter();
 const route = useRoute();
 const isLoginPage = computed(() => route.path === "/login");
 
@@ -23,8 +22,7 @@ supabase.auth.onAuthStateChange((event, session) => {
   if (event === "SIGNED_IN") {
     userStore.user = session?.user;
   } else if (event === "SIGNED_OUT") {
-    userStore.user = null;
-    router.replace("/login");
+    userStore.user = undefined;
   }
 });
 

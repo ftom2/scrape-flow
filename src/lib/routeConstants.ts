@@ -1,6 +1,6 @@
 export const routes = [
   {
-    href: "",
+    href: "/",
     label: "Home",
     icon: "lucide:home",
   },

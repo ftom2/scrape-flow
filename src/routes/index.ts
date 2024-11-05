@@ -1,14 +1,20 @@
 import { supabase } from "@/lib/supabaseClient";
 import { createRouter, createWebHistory } from "vue-router";
 
-import LoginPage from "@/pages/auth/LoginPage.vue";
-import HomePage from "@/pages/dashboard/DashboardPage.vue";
-import NotFoundPage from "@/pages/NotFoundPage.vue";
+import DashboardPage from "@/pages/dashboard/DashboardPage.vue";
 
 const routes = [
-  { path: "/", component: HomePage },
-  { path: "/login", component: LoginPage },
-  { path: "/:catchAll(.*)*", component: NotFoundPage },
+  { path: "/dashboard", component: DashboardPage },
+  { path: "/login", component: () => import("@/pages/auth/LoginPage.vue") },
+  {
+    path: "/workflows",
+    component: () => import("@/pages/workflow/WorkflowsPage.vue"),
+  },
+  { path: "/", component: DashboardPage },
+  {
+    path: "/:catchAll(.*)*",
+    component: () => import("@/pages/NotFoundPage.vue"),
+  },
 ];
 
 export const router = createRouter({
