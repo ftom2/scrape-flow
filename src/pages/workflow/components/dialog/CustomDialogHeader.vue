@@ -1,11 +1,9 @@
 <template>
   <DialogHeader>
-    <DialogTitle as-child>
-      <div class="flex flex-col items-center gap-2 mb-2">
-        <Icon :icon="icon" />
-        <p class="text-xl text-primary">{{ title }}</p>
-        <p class="text-sm text-muted-foreground">{{ subtitle }}</p>
-      </div>
+    <DialogTitle class="flex flex-col items-center gap-2 mb-2">
+      <Icon :icon="icon" />
+      <p class="text-xl text-primary">{{ title }}</p>
+      <p class="text-sm text-muted-foreground">{{ subtitle }}</p>
     </DialogTitle>
   </DialogHeader>
 </template>

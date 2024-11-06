@@ -8,11 +8,15 @@ const props = defineProps<{
   type?: string;
   placeholder?: string;
   label: string;
+  required?: boolean;
 }>();
 </script>
 <template>
   <FormItem>
-    <FormLabel>{{ props.label }}</FormLabel>
+    <FormLabel
+      >{{ props.label }}
+      <span v-if="props.required" class="text-destructive">*</span></FormLabel
+    >
     <FormControl>
       <Input
         :type="props.type"
