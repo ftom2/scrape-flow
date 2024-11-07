@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useRouter } from "vue-router";
 import {
   CreateWorkflowDialog,
   UserWorkflowSkeleton,
@@ -8,7 +9,8 @@ import EmptyState from "./components/EmptyState.vue";
 import ErrorMessage from "./components/ErrorMessage.vue";
 import { useWorkflowsApi } from "./hooks/useWorkflows.api";
 
-const { isLoading, workflows, error } = useWorkflowsApi();
+const router = useRouter();
+const { isLoading, workflows, error, createWorkflow } = useWorkflowsApi();
 </script>
 <template>
   <div class="flex flex-col h-full">
@@ -27,7 +29,7 @@ const { isLoading, workflows, error } = useWorkflowsApi();
 
         <EmptyState v-else-if="!workflows.length" />
 
-        <UserWorkflows v-else />
+        <UserWorkflows v-else :workflows="workflows" />
       </div>
     </div>
   </div>

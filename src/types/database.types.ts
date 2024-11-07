@@ -49,7 +49,7 @@ export type Database = {
           description: string | null
           id: string
           name: string
-          status: string
+          status: Database["public"]["Enums"]["WorkflowStatus"]
           updatedAt: string
           userId: string
         }
@@ -57,10 +57,10 @@ export type Database = {
           createdAt?: string
           definition: Json
           description?: string | null
-          id: string
+          id?: string
           name: string
-          status: string
-          updatedAt: string
+          status: Database["public"]["Enums"]["WorkflowStatus"]
+          updatedAt?: string
           userId: string
         }
         Update: {
@@ -69,7 +69,7 @@ export type Database = {
           description?: string | null
           id?: string
           name?: string
-          status?: string
+          status?: Database["public"]["Enums"]["WorkflowStatus"]
           updatedAt?: string
           userId?: string
         }
@@ -83,7 +83,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      WorkflowStatus: "DRAFT" | "PUBLISHED"
     }
     CompositeTypes: {
       [_ in never]: never

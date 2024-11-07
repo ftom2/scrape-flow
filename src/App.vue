@@ -7,12 +7,15 @@ import {
   UserButton,
 } from "@/components";
 import Separator from "@/components/ui/separator/Separator.vue";
-import Toaster from "@/components/ui/toast/Toaster.vue";
 import { supabase } from "@/lib/supabaseClient";
+import { useColorMode } from "@vueuse/core";
 import { computed } from "vue";
 import { useRoute } from "vue-router";
+import { Toaster } from "vue-sonner";
 import { useUserStore } from "./stores/userStore";
 
+type Theme = "light" | "dark";
+const mode = useColorMode();
 const userStore = useUserStore();
 
 const route = useRoute();
@@ -56,5 +59,5 @@ function onLogout() {
       </div>
     </div>
   </div>
-  <Toaster />
+  <Toaster richColors :theme="mode as Theme" />
 </template>
